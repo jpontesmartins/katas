@@ -83,6 +83,7 @@ Example 2: The 'u' island is 3 + 2 = 5 units away.
 
 ## Examples
 
+Unnoccipied Island
 
 ```
   map = [
@@ -99,6 +100,9 @@ Example 2: The 'u' island is 3 + 2 = 5 units away.
 solution = [[4, 4]]
 There is a 'u' and an 'm'. Rules say we conquer a 'u' if possible, so...
 
+
+Marines Island
+
 ```
   map = [
     ['p', '~', '~', '~', '~', '~', '~', '~'],
@@ -113,3 +117,23 @@ There is a 'u' and an 'm'. Rules say we conquer a 'u' if possible, so...
 
 solution = [[2,0]]
 
+
+Two Marines Island at the same distance
+
+Example 3:
+
+```
+    map = [
+    ['p', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', 'm', '~', 'm', '~', '~', '~', '~'],
+    ['m', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', '~', '~', '~', '~', 'm', '~', '~'],
+    ['~', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', '~', '~', 'm', '~', '~', '~', '~'],
+    ['~', '~', '~', '~', '~', '~', '~', '~']];
+```
+
+There are no 'u' islands, so we'll take an 'm'. But wait! There are two the same distance away.
+
+solution = [[1, 1], [2, 0]], not [[2, 0], [1, 1]] lowest 'x' value first.

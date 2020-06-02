@@ -1,7 +1,7 @@
 const pirates = require('./pirates');
 
 describe('pirates', () => {
-    it('should return position [4,4] for \'u\'  ', () => {
+    it('should return position [[4,4]] for \'u\'  ', () => {
 
         const map = [
             ['p', '~', '~', '~', '~', '~', '~', '~'],
@@ -13,11 +13,46 @@ describe('pirates', () => {
             ['~', '~', '~', '~', '~', '~', '~', '~'],
             ['~', '~', '~', '~', '~', '~', '~', '~']];
 
-            // 'u' -> [i,j] -> [0,0] -> [4,4] = 4 + 4 = 8
-            // 'm' -> [i,j] -> [0,0] -> [3,2] = 3 + 2 = 5
+        const unoccupiedIsland = pirates.conquer(map);
+
+        expect(unoccupiedIsland).toEqual([[4, 4]]);
+    });
+
+    it('should return position [[3,5]] for \'m\'  ', () => {
+
+        const map = [
+            ['p', '~', '~', '~', '~', '~', '~', '~'],
+            ['~', '~', '~', '~', '~', '~', '~', '~'],
+            ['~', '~', '~', '~', '~', '~', '~', '~'],
+            ['~', '~', 'm', '~', '~', '~', '~', '~'],
+            ['~', '~', '~', '~', '~', '~', '~', '~'],
+            ['~', '~', '~', '~', '~', '~', '~', '~'],
+            ['~', '~', '~', '~', '~', '~', '~', '~'],
+            ['~', '~', '~', '~', '~', '~', '~', '~']];
 
         const unoccupiedIsland = pirates.conquer(map);
 
-        expect(unoccupiedIsland).toBe([[4, 4]]);
+        expect(unoccupiedIsland).toEqual([[3, 2]]);
     });
+
+    it('should return position [[1,1],[2,0]] for \'m\'  ', () => {
+
+        const map = [
+            ['p', '~', '~', '~', '~', '~', '~', '~'],
+            ['~', 'm', '~', 'm', '~', '~', '~', '~'],
+            ['m', '~', '~', '~', '~', '~', '~', '~'],
+            ['~', '~', '~', '~', '~', '~', '~', '~'],
+            ['~', '~', '~', '~', '~', 'm', '~', '~'],
+            ['~', '~', '~', '~', '~', '~', '~', '~'],
+            ['~', '~', '~', 'm', '~', '~', '~', '~'],
+            ['~', '~', '~', '~', '~', '~', '~', '~']];
+
+        const unoccupiedIsland = pirates.conquer(map);
+        console.log(unoccupiedIsland);
+        
+        expect(unoccupiedIsland).toEqual([[1,1], [2,0]]);
+
+    });
+
+
 });
