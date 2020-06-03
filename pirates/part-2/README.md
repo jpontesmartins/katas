@@ -1,8 +1,9 @@
 Pirates Island Conquer - Part 2
 ===
 
-## Questions
+## Questions & Others
 - If there is two 'p' (pirates home islands) and two 'u' in different distances I return the both of 'u' islands? One for each 'p' island?
+- Organize the X and U in examples of part-1 and part-2
 
 
 ## Description
@@ -31,10 +32,7 @@ y 4    ['~', '~', '~', '~', 'm', '~', '~', '~'],
 
 ## 
 
-
 ---
----
-
 
 # Pirates Island Conquer - Part 1
 
