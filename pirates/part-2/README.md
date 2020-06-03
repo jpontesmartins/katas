@@ -1,0 +1,182 @@
+Pirates Island Conquer - Part 2
+===
+
+## Questions
+- If there is two 'p' (pirates home islands) and two 'u' in different distances I return the both of 'u' islands? One for each 'p' island?
+
+
+## Description
+
+The pirate home island is not only at [0, 0].  
+There is between 1 and 3 pirate home islands.   
+
+## Original source
+
+https://www.codewars.com/kata/5962b98c2e8c8b02fa0000b4
+
+## Examples
+```
+                      x
+         0    1    2    3    4    5    6    7
+
+  0    ['~', '~', '~', '~', '~', '~', '~', '~'],
+  1    ['~', '~', '~', '~', '~', 'p', '~', '~'],
+  2    ['~', '~', '~', '~', '~', '~', '~', '~'],
+  3    ['p', '~', 'u', '~', '~', '~', '~', '~'],
+y 4    ['~', '~', '~', '~', 'm', '~', '~', '~'],
+  5    ['~', '~', '~', '~', '~', '~', '~', '~'],
+  6    ['~', '~', '~', '~', '~', '~', '~', '~'],
+  7    ['~', '~', '~', '~', '~', '~', '~', '~']];
+```
+
+## 
+
+
+---
+---
+
+
+# Pirates Island Conquer - Part 1
+
+
+## Original source
+https://www.codewars.com/kata/59604925a68b04598e00001e
+
+
+
+## Description
+
+You are a captain on a pirate ship. You are looking to conquer islands, so that you can do lots of piratey stuff on those islands. Let's take a look at your pirate map of the area:
+
+
+Map
+```
+                      y
+         0    1    2    3    4    5    6    7
+
+  0    ['p', '~', '~', '~', '~', '~', '~', '~'],
+  1    ['~', '~', '~', '~', '~', '~', '~', '~'],
+  2    ['~', '~', '~', '~', '~', '~', '~', '~'],
+  3    ['~', '~', 'u', '~', '~', '~', '~', '~'],
+x 4    ['~', '~', '~', '~', 'm', '~', '~', '~'],
+  5    ['~', '~', '~', '~', '~', '~', '~', '~'],
+  6    ['~', '~', '~', '~', '~', '~', '~', '~'],
+  7    ['~', '~', '~', '~', '~', '~', '~', '~']];
+```
+
+
+Where:
+
+- ``` 'p' ``` = pirate (that's our home island). There will always be one home island, always in the top left corner of the sea.
+
+- ``` 'u' ``` = unoccupied island
+
+- ``` 'm' ``` = island occupied by marines
+
+- ``` '~' ``` = ocean waves
+
+
+The map size will always be 8 x 8. Each of 'p', 'u', 'm' and '~' can occur in any space of the map.
+Coordinates are given as [x,y] (examples from the above map: 'p' at [0, 0], 'u' at [3, 2], 'm' at [4, 4]).
+
+
+### Input
+
+A see map, formatted as an array of arrays of strings.
+
+### Output
+
+Return an array containing all the best candidates (ordered by lowest x coordinate, then lowest y), or an empty array if no island to conquer.
+
+### Rules (highest priority first)
+1. Conquer an unoccupied island.
+2. If there are no unoccupied islands, conquer one of the marines' islands.
+3. Conquer the island closest to any of our home islands (the p items / distances are computed as Manhattan distances).
+
+
+### Distance
+Pirates can only move vertically and horizontally, not diagonally. Moving one index in the array is one unit of distance.
+
+Example 1: The 'u' island is 2 units away:
+
+```
+    ['p', '~', 'u', '~', '~', '~', '~', '~'],
+    ['~', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', '~', '~', '~', '~', '~', '~', '~'],
+    ...
+```
+
+Example 2: The 'u' island is 3 + 2 = 5 units away.
+
+```
+  |  ['p', '~', '~', '~', '~', '~', '~', '~'],
+  |  ['~', '~', '~', '~', '~', '~', '~', '~'],
+3 |  ['~', '~', '~', '~', '~', '~', '~', '~'],
+  |  ['~', '~', 'u', '~', '~', '~', '~', '~'],
+  |---------->
+      2
+```
+
+
+## Examples
+
+Unnoccipied Island
+
+```
+  map = [
+    ['p', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', '~', 'm', '~', '~', '~', '~', '~'],
+    ['~', '~', '~', '~', 'u', '~', '~', '~'],
+    ['~', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', '~', '~', '~', '~', '~', '~', '~']];
+```
+
+solution = [[4, 4]]
+There is a 'u' and an 'm'. Rules say we conquer a 'u' if possible, so...
+
+
+Marines Island
+
+```
+  map = [
+    ['p', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', '~', '~', 'm', '~', '~', '~', '~'],
+    ['m', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', '~', '~', '~', '~', 'm', '~', '~'],
+    ['~', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', '~', '~', 'm', '~', '~', '~', '~'],
+    ['~', '~', '~', '~', '~', '~', '~', '~']];
+```
+
+solution = [[2,0]]
+
+
+Two Marines Island at the same distance
+
+Example 3:
+
+```
+    map = [
+    ['p', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', 'm', '~', 'm', '~', '~', '~', '~'],
+    ['m', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', '~', '~', '~', '~', 'm', '~', '~'],
+    ['~', '~', '~', '~', '~', '~', '~', '~'],
+    ['~', '~', '~', 'm', '~', '~', '~', '~'],
+    ['~', '~', '~', '~', '~', '~', '~', '~']];
+```
+
+There are no 'u' islands, so we'll take an 'm'. But wait! There are two the same distance away.
+
+solution = [[1, 1], [2, 0]], not [[2, 0], [1, 1]] lowest 'x' value first.
+
+
+
+
+
+
